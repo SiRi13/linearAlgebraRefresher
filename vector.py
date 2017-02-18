@@ -22,6 +22,11 @@ class Vector(object):
         except TypeError:
             raise TypeError('The coordinates must be an iterable')
 
+    def __getitem__(self, i):
+        return self.coordinates[i]
+
+    def __iter__(self):
+        return self.coordinates.__iter__()
 
     def __str__(self):
         return 'Vector: {}'.format(self.coordinates)
@@ -53,7 +58,8 @@ class Vector(object):
 
     # length of the vector
     def magnitude(self):
-        return(round(sqrt(sum([x**2 for x in self.coordinates])),3))
+        retVal = Decimal(sqrt(sum([x**2 for x in self.coordinates])))
+        return retVal
 
     # direction of the vector
     def normalize(self):

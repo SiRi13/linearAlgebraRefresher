@@ -31,24 +31,24 @@ class Line(object):
 
 
     def __eq__(self, ell):
-        if self.normal_vector.isZero():
-            if not ell.normal_vector.isZero():
+        if self.normal_vector.is_zero():
+            if not ell.normal_vector.is_zero():
                 return False
             else:
                 diff = self.constant_term - ell.constant_term
                 return MyDecimal(diff).is_near_zero()
-        elif ell.normal_vector.isZero():
+        elif ell.normal_vector.is_zero():
             return False
 
         if not self.is_parallel_to(ell):
             return False
 
         x0 = self.basepoint
-        y0 = self.basepoint
+        y0 = ell.basepoint
         basepoint_diff = x0 - y0
 
         n = self.normal_vector
-        return basepoint_diff.orthogonal(n)
+        return basepoint_diff.is_orthogonal_to(n)
 
 
     def intersection_with(self, ell):
